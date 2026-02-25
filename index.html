@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic AI for Biopharma & Healthcare | Special Program</title>
+    <meta name="description"
+        content="The premier Agentic AI specialization for Biopharma professionals, Doctors, and Healthcare Administrators. 6 live AI demo modules, industry certification, real-world use cases.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
+<body>
+
+    <!-- ====== NAV ====== -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <div class="nav-logo">
+                <span class="logo-icon">⬡</span>
+                <span class="logo-text">BioPharma<span class="logo-accent">AI</span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#modules">Modules</a></li>
+                <li><a href="#why">Why AI</a></li>
+                <li><a href="#ai-assistant">Live AI</a></li>
+                <li><a href="#enroll">Enroll</a></li>
+            </ul>
+            <a href="#enroll" class="btn btn-primary nav-cta">Get Started</a>
+            <button class="nav-burger" id="navBurger" aria-label="Open menu">&#9776;</button>
+        </div>
+    </nav>
+
+    <main>
+
+        <!-- ====== HERO ====== -->
+        <section id="hero">
+            <canvas id="particleCanvas"></canvas>
+            <div class="hero-orb orb1"></div>
+            <div class="hero-orb orb2"></div>
+            <div class="hero-orb orb3"></div>
+            <div class="container hero-content">
+                <div class="hero-badge reveal">🧬 Specialization Program · 2026 Cohort</div>
+                <h1 class="reveal">Agentic AI for <span class="gradient-text">Biopharma</span> &amp; Healthcare</h1>
+                <p class="hero-sub reveal">Empowering 🔬 Biopharma Professionals, 🩺 Doctors, 🏥 Clinic Admins, and 💊
+                    Researchers with the next evolution of autonomous AI agents.</p>
+                <div class="hero-cta reveal">
+                    <a href="#modules" class="btn btn-primary btn-glow">Explore the 6 Modules</a>
+                    <a href="#why" class="btn btn-outline">Why Agentic AI?</a>
+                </div>
+                <div class="hero-stats reveal">
+                    <div class="stat">
+                        <span class="stat-num" data-target="500">0</span><span class="stat-unit">+</span>
+                        <span class="stat-label">Professionals Enrolled</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-num" data-target="6">0</span>
+                        <span class="stat-label">Live AI Modules</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-num" data-target="94">0</span><span class="stat-unit">%</span>
+                        <span class="stat-label">Certification Rate</span>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span>Scroll</span>
+                <div class="scroll-dot"></div>
+            </div>
+        </section>
+
+        <!-- ====== MODULES INTRO ====== -->
+        <section id="modules">
+            <div class="container">
+                <p class="section-eyebrow reveal">Interactive Demos</p>
+                <h2 class="reveal">What You'll <span class="gradient-text">Master</span></h2>
+                <p class="section-sub reveal">Each module is a hands-on simulation of a real Agentic AI use case in
+                    healthcare. Click interact to see the agent in action.</p>
+            </div>
+        </section>
+
+        <!-- ====== MODULE 1: CLINICAL WORKFLOW AUTOMATION ====== -->
+        <section class="module-section" id="mod1">
+            <div class="container module-layout">
+                <div class="module-info reveal">
+                    <div class="module-badge">Module 01</div>
+                    <h3>Clinical Workflow <span class="gradient-text">Automation</span></h3>
+                    <p>Watch an AI agent autonomously handle patient scheduling, triage prioritization, and admin
+                        handoffs — end-to-end without human intervention.</p>
+                    <ul class="module-features">
+                        <li>⚡ Real-time triage classification</li>
+                        <li>📅 Intelligent appointment scheduling</li>
+                        <li>🔄 Multi-system handoff coordination</li>
+                    </ul>
+                </div>
+                <div class="module-demo reveal">
+                    <div class="demo-card glass">
+                        <div class="demo-header">
+                            <span class="demo-dot dot-red"></span>
+                            <span class="demo-dot dot-yellow"></span>
+                            <span class="demo-dot dot-green"></span>
+                            <span class="demo-title">Agent Terminal — ClinicalOps AI</span>
+                        </div>
+                        <div class="chat-window" id="chatWindow">
+                            <div class="chat-msg system">🏥 System ready. Awaiting task...</div>
+                        </div>
+                        <div class="chat-actions">
+                            <button class="btn btn-primary btn-sm" id="triggerWorkflow" onclick="triggerWorkflow()">▶
+                                Trigger Workflow</button>
+                            <button class="btn btn-outline btn-sm" onclick="resetChat()">↺ Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== MODULE 2: PATIENT DATA ANALYSIS ====== -->
+        <section class="module-section module-alt" id="mod2">
+            <div class="container module-layout reverse">
+                <div class="module-demo reveal">
+                    <div class="demo-card glass">
+                        <div class="demo-header">
+                            <span class="demo-dot dot-red"></span>
+                            <span class="demo-dot dot-yellow"></span>
+                            <span class="demo-dot dot-green"></span>
+                            <span class="demo-title">Patient Analytics Dashboard</span>
+                        </div>
+                        <div class="chart-container">
+                            <div class="chart-legend">
+                                <span class="legend-item"><i class="legend-color"
+                                        style="background:var(--secondary)"></i>Recovery Rate</span>
+                                <span class="legend-item"><i class="legend-color"
+                                        style="background:var(--accent)"></i>Risk Score</span>
+                            </div>
+                            <svg id="patientChart" viewBox="0 0 340 160" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Bars will be animated by JS -->
+                                <g id="chartBars"></g>
+                                <!-- X labels -->
+                                <text x="30" y="158" class="chart-label">Q1</text>
+                                <text x="87" y="158" class="chart-label">Q2</text>
+                                <text x="144" y="158" class="chart-label">Q3</text>
+                                <text x="201" y="158" class="chart-label">Q4</text>
+                                <text x="255" y="158" class="chart-label">Q5</text>
+                                <text x="310" y="158" class="chart-label">Q6</text>
+                            </svg>
+                            <div id="chartTooltip" class="chart-tooltip"></div>
+                        </div>
+                        <div class="chart-insight glass" id="chartInsight">
+                            <span class="insight-icon">🤖</span>
+                            <span id="insightText">Hover over a bar to get AI-powered insights.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-info reveal">
+                    <div class="module-badge">Module 02</div>
+                    <h3>Intelligent Patient <span class="gradient-text">Data Analysis</span></h3>
+                    <p>Autonomous agents that process millions of patient records to surface hidden patterns, predict
+                        readmission risks, and recommend interventions.</p>
+                    <ul class="module-features">
+                        <li>📊 Multi-variate cohort analysis</li>
+                        <li>🔮 Predictive readmission modelling</li>
+                        <li>🧠 Unsupervised anomaly detection</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== MODULE 3: DRUG DISCOVERY ====== -->
+        <section class="module-section" id="mod3">
+            <div class="container module-layout">
+                <div class="module-info reveal">
+                    <div class="module-badge">Module 03</div>
+                    <h3>Drug Discovery <span class="gradient-text">Simulation</span></h3>
+                    <p>Deploy AI agents to simulate molecular docking, screen chemical libraries, and traverse compound
+                        spaces 100× faster than traditional methods.</p>
+                    <ul class="module-features">
+                        <li>🧪 Molecular docking simulation</li>
+                        <li>⚗️ AI-driven synthesis pathway</li>
+                        <li>🔬 Virtual screening of 10M+ compounds</li>
+                    </ul>
+                </div>
+                <div class="module-demo reveal">
+                    <div class="demo-card glass">
+                        <div class="demo-header">
+                            <span class="demo-dot dot-red"></span>
+                            <span class="demo-dot dot-yellow"></span>
+                            <span class="demo-dot dot-green"></span>
+                            <span class="demo-title">Molecular Simulation Engine</span>
+                        </div>
+                        <div class="mol-canvas" id="molCanvas">
+                            <!-- Nodes rendered by JS -->
+                        </div>
+                        <div class="mol-stats">
+                            <div class="mol-stat">
+                                <span class="mol-stat-val" id="molCompounds">4,218</span>
+                                <span class="mol-stat-label">Compounds Screened</span>
+                            </div>
+                            <div class="mol-stat">
+                                <span class="mol-stat-val" id="molHits">12</span>
+                                <span class="mol-stat-label">Active Hits</span>
+                            </div>
+                            <div class="mol-stat">
+                                <span class="mol-stat-val" id="molScore">87.4%</span>
+                                <span class="mol-stat-label">Binding Score</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-sm" style="margin:0.5rem auto;display:block;"
+                            onclick="runExploration()">🔬 Run Exploration</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== MODULE 4: AI DOCUMENTATION ====== -->
+        <section class="module-section module-alt" id="mod4">
+            <div class="container module-layout reverse">
+                <div class="module-demo reveal">
+                    <div class="demo-card glass" style="width:100%">
+                        <div class="demo-header">
+                            <span class="demo-dot dot-red"></span>
+                            <span class="demo-dot dot-yellow"></span>
+                            <span class="demo-dot dot-green"></span>
+                            <span class="demo-title">AI Documentation Agent</span>
+                        </div>
+                        <div class="doc-split">
+                            <div class="doc-panel">
+                                <div class="doc-panel-header">📋 Raw Doctor Notes</div>
+                                <div class="doc-raw">Patient: J. Patel, 58M. C/O chest pain x3 days, radiating to left
+                                    arm. HTN, DM2. BP 152/94. HR 88. On metformin 1000mg BD, lisinopril 10mg OD. ECG: ST
+                                    elevation leads II, III, aVF. Troponin pending. Impression: STEMI workup. Urgent
+                                    cath lab consult.</div>
+                            </div>
+                            <div class="doc-arrow">→</div>
+                            <div class="doc-panel">
+                                <div class="doc-panel-header">📄 AI-Generated EMR</div>
+                                <div class="doc-emr" id="docEmr"></div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-sm" style="margin:0.75rem auto;display:block;"
+                            onclick="generateDoc()">✨ Generate EMR Note</button>
+                    </div>
+                </div>
+                <div class="module-info reveal">
+                    <div class="module-badge">Module 04</div>
+                    <h3>AI-Powered <span class="gradient-text">Documentation</span></h3>
+                    <p>AI agents that convert raw physician dictations, handwritten notes, and audio transcripts into
+                        structured EMR entries, SOAP notes, and research summaries.</p>
+                    <ul class="module-features">
+                        <li>📝 SOAP note generation</li>
+                        <li>🎙️ Voice-to-EMR transcription</li>
+                        <li>📑 Research paper drafting</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== MODULE 5: PREDICTIVE DIAGNOSTICS ====== -->
+        <section class="module-section" id="mod5">
+            <div class="container module-layout">
+                <div class="module-info reveal">
+                    <div class="module-badge">Module 05</div>
+                    <h3>Predictive <span class="gradient-text">Diagnostics</span></h3>
+                    <p>Build decision-support agents that synthesize patient vitals, lab results, and history to
+                        calculate risk scores and surface personalized treatment options in real time.</p>
+                    <ul class="module-features">
+                        <li>⚠️ Multi-factor risk stratification</li>
+                        <li>💊 Personalized treatment suggestions</li>
+                        <li>⏱️ Early-warning timeline modelling</li>
+                    </ul>
+                </div>
+                <div class="module-demo reveal">
+                    <div class="demo-card glass">
+                        <div class="demo-header">
+                            <span class="demo-dot dot-red"></span>
+                            <span class="demo-dot dot-yellow"></span>
+                            <span class="demo-dot dot-green"></span>
+                            <span class="demo-title">Diagnostic Risk Engine</span>
+                        </div>
+                        <div class="diag-sliders">
+                            <div class="slider-row">
+                                <label>Age <span class="slider-val" id="ageVal">58</span></label>
+                                <input type="range" id="sliderAge" min="20" max="90" value="58"
+                                    oninput="updateDiagnostics()">
+                            </div>
+                            <div class="slider-row">
+                                <label>Glucose (mg/dL) <span class="slider-val" id="glucVal">160</span></label>
+                                <input type="range" id="sliderGluc" min="70" max="400" value="160"
+                                    oninput="updateDiagnostics()">
+                            </div>
+                            <div class="slider-row">
+                                <label>Systolic BP <span class="slider-val" id="bpVal">152</span></label>
+                                <input type="range" id="sliderBp" min="90" max="200" value="152"
+                                    oninput="updateDiagnostics()">
+                            </div>
+                        </div>
+                        <div class="diag-meter">
+                            <div class="meter-label">
+                                <span>Cardiovascular Risk Score</span>
+                                <span class="meter-pct" id="meterPct">74%</span>
+                            </div>
+                            <div class="meter-track">
+                                <div class="meter-fill" id="meterFill" style="width:74%"></div>
+                            </div>
+                            <div class="meter-verdict" id="meterVerdict">⚠️ High Risk — Urgent cardiology referral
+                                recommended</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== MODULE 6: SECURE AI & COMPLIANCE ====== -->
+        <section class="module-section module-alt" id="mod6">
+            <div class="container module-layout reverse">
+                <div class="module-demo reveal">
+                    <div class="demo-card glass">
+                        <div class="demo-header">
+                            <span class="demo-dot dot-red"></span>
+                            <span class="demo-dot dot-yellow"></span>
+                            <span class="demo-dot dot-green"></span>
+                            <span class="demo-title">Compliance Audit Agent</span>
+                        </div>
+                        <div class="vault-container">
+                            <div class="vault-icon" id="vaultIcon">🔐</div>
+                            <div class="vault-bars" id="vaultBars">
+                                <div class="vault-bar" style="width:0%"><span>Patient Records</span></div>
+                                <div class="vault-bar" style="width:0%"><span>Clinical Trials</span></div>
+                                <div class="vault-bar" style="width:0%"><span>Drug Data</span></div>
+                                <div class="vault-bar" style="width:0%"><span>Billing Records</span></div>
+                            </div>
+                            <div class="vault-badges" id="vaultBadges">
+                                <span class="badge" style="opacity:0">✅ HIPAA</span>
+                                <span class="badge" style="opacity:0">✅ GDPR</span>
+                                <span class="badge" style="opacity:0">✅ SOC 2</span>
+                                <span class="badge" style="opacity:0">✅ FDA 21 CFR</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-sm" style="margin:0.5rem auto;display:block;"
+                            onclick="auditNow()">🛡️ Audit Now</button>
+                    </div>
+                </div>
+                <div class="module-info reveal">
+                    <div class="module-badge">Module 06</div>
+                    <h3>Secure AI &amp; <span class="gradient-text">Compliance</span></h3>
+                    <p>Design HIPAA and GDPR-compliant AI pipelines. Autonomous agents that continuously monitor,
+                        encrypt, and audit healthcare data flows in real time.</p>
+                    <ul class="module-features">
+                        <li>🔒 End-to-end data encryption</li>
+                        <li>📋 Automated HIPAA/GDPR audit trails</li>
+                        <li>🚨 Real-time threat detection &amp; alerts</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== WHY THIS PROGRAM ====== -->
+        <section id="why">
+            <div class="container">
+                <p class="section-eyebrow reveal">The Opportunity</p>
+                <h2 class="reveal">Why <span class="gradient-text">Agentic AI</span> in Healthcare?</h2>
+                <div class="why-grid">
+                    <div class="glass why-card reveal">
+                        <div class="why-icon">🚀</div>
+                        <h4>Beyond Copilots</h4>
+                        <p>Agentic AI takes initiative — it plans, executes, and adapts without constant human
+                            prompting, handling complex multi-step workflows end-to-end.</p>
+                    </div>
+                    <div class="glass why-card reveal">
+                        <div class="why-icon">📈</div>
+                        <h4>$45B Market by 2030</h4>
+                        <p>Healthcare AI is the fastest-growing sector. Professionals who master agentic systems now
+                            will lead the next decade of medical innovation.</p>
+                    </div>
+                    <div class="glass why-card reveal">
+                        <div class="why-icon">🎓</div>
+                        <h4>Industry Certification</h4>
+                        <p>Graduate with a recognized credential in Agentic AI for Healthcare — validated by leading
+                            biopharma companies and hospital networks.</p>
+                    </div>
+                    <div class="glass why-card reveal">
+                        <div class="why-icon">🤝</div>
+                        <h4>Built for Practitioners</h4>
+                        <p>No PhD required. Designed for doctors, researchers, and admins who want to deploy AI — not
+                            just understand it academically.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== CLINICAL DECISION AI ====== -->
+        <!-- ====== CLINICAL DECISION AI ====== -->
+        <section id="ai-assistant">
+            <div class="container">
+                <p class="section-eyebrow reveal">🩺 Global BioPharma AI Initiative</p>
+                <h2 class="reveal">Clinical Decision <span class="gradient-text">AI Console</span></h2>
+                <p class="section-sub reveal">Advanced agentic support for multi-step consultations. Speak or type to
+                    begin real-time analysis.</p>
+
+                <div class="clinic-dashboard glass reveal">
+
+                    <!-- Dashboard Header: Unified System Control -->
+                    <div class="clinic-header">
+                        <div class="header-group session-info">
+                            <span class="header-label">Consultation Session</span>
+                            <div class="header-item">
+                                <div class="ai-status-dot pulse-online" id="aiStatusDot" title="AI Core Online"></div>
+                                <span class="session-id">ID: CONSULT-2026-X83P</span>
+                                <span class="clinic-timer" id="clinicTimer">00:00</span>
+                            </div>
+                        </div>
+
+                        <div class="header-group live-monitor">
+                            <span class="header-label">Audio Stream Monitor</span>
+                            <div class="header-item">
+                                <div class="monitor-vis" id="voiceBars">
+                                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                                </div>
+                                <span class="monitor-text" id="voiceStatusText">Standby...</span>
+                            </div>
+                        </div>
+
+                        <div class="header-group dashboard-controls">
+                            <div class="control-actions">
+                                <button class="dash-btn" onclick="exportConsultation()" title="Save Session">💾
+                                    Export</button>
+                                <div class="dash-model-select">
+                                    <select id="aiModelSelect">
+                                        <option value="google/gemini-2.0-flash:free">Gemini 2.0 Flash</option>
+                                        <option value="openrouter/free">Auto-Select Model</option>
+                                        <option value="meta-llama/llama-3.3-70b-instruct:free">Llama 3.3 70B</option>
+                                        <option value="mistralai/mistral-7b-instruct:free">Mistral 7B</option>
+                                    </select>
+                                </div>
+                                <button class="dash-btn btn-clear" onclick="clearAiChat()">🗑 Reset</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-body">
+                        <!-- LEFT COLUMN: Consultation Workspace -->
+                        <div class="dashboard-main">
+
+                            <!-- Control Node: Voice & VAD Integration -->
+                            <div class="control-node-area">
+                                <div class="mic-group">
+                                    <button class="node-mic-btn" id="micBtn" onclick="toggleVoice()">
+                                        <div class="node-mic-ring"></div>
+                                        <span class="node-mic-icon" id="micIcon">🎙️</span>
+                                    </button>
+                                    <div class="mic-info">
+                                        <span class="node-mic-label" id="micLabel">START DICTATION</span>
+                                        <div class="vad-control-row">
+                                            <span class="vad-label-text">Auto-Submit (VAD)</span>
+                                            <label class="premium-toggle">
+                                                <input type="checkbox" id="vadToggle" checked>
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="stream-log-area">
+                                    <div class="log-label">
+                                        <span class="log-icon">⚡</span> LIVE CORE TRANSCRIPT
+                                    </div>
+                                    <div class="log-content transcript-text" id="transcriptText">Awaiting clinical
+                                        data...</div>
+                                </div>
+                            </div>
+
+                            <!-- Quick Consultation Scenarios -->
+                            <div class="scenario-grid" id="aiSuggestions">
+                                <div class="scenario-card" onclick="sendSuggestion(this)">
+                                    <div class="scenario-icon">🌡️</div>
+                                    <div class="scenario-meta">
+                                        <span class="scenario-title">Infection Scan</span>
+                                        <span class="scenario-preview">Fever, sore throat, tonsillar patches...</span>
+                                    </div>
+                                </div>
+                                <div class="scenario-card" onclick="sendScenario(this)">
+                                    <div class="scenario-icon">🫀</div>
+                                    <div class="scenario-meta">
+                                        <span class="scenario-title">Cardiac Screen</span>
+                                        <span class="scenario-preview">Chest pain, BP 160/95, history...</span>
+                                    </div>
+                                </div>
+                                <div class="scenario-card" onclick="sendScenario(this)">
+                                    <div class="scenario-icon">👂</div>
+                                    <div class="scenario-meta">
+                                        <span class="scenario-title">ENT Assessment</span>
+                                        <span class="scenario-preview">Child, ear pain, hearing loss...</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Main Output: Clinical Assessment Feed -->
+                            <div class="clinical-assessment-feed" id="aiMessages">
+                                <div class="assessment-entry entry-welcome">
+                                    <div class="assessment-header">
+                                        <span class="entity-badge bot-badge">System AI</span>
+                                        <span class="entry-time">Ready</span>
+                                    </div>
+                                    <div class="assessment-content">
+                                        <p><strong>BioPharma AI Core initialized.</strong> I am ready to assist with
+                                            your patient assessment. Speak or type symptoms to begin professional
+                                            clinical analysis.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Direct Input Interface -->
+                            <div class="console-input-dock">
+                                <div class="dock-input-wrapper">
+                                    <textarea id="aiInput" class="dock-textarea"
+                                        placeholder="Enter clinical notes, vitals, or patient history here..." rows="1"
+                                        onkeydown="handleAiKey(event)"></textarea>
+                                    <button class="dock-send-btn" id="aiSendBtn" onclick="sendAiMessage()">
+                                        <span id="aiSendIcon">➤</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- RIGHT COLUMN: Insight Analytics -->
+                        <div class="dashboard-sidebar">
+                            <div class="sidebar-header">
+                                <div class="live-activity-orb"></div>
+                                <span class="sidebar-title">Insight Engine</span>
+                                <span class="status-badge" id="insightsBadge">LISTENING</span>
+                            </div>
+
+                            <div class="insight-group">
+                                <div class="insight-label"><span class="i-icon">🩸</span> VITALS</div>
+                                <div class="insight-node-wall" id="vitalChips">
+                                    <span class="node-empty">---</span>
+                                </div>
+                            </div>
+
+                            <div class="insight-group">
+                                <div class="insight-label"><span class="i-icon">🤒</span> SYMPTOMS</div>
+                                <div class="insight-node-wall" id="symptomChips">
+                                    <span class="node-empty">---</span>
+                                </div>
+                            </div>
+
+                            <div class="insight-group">
+                                <div class="insight-label"><span class="i-icon">⚠️</span> RISK FLAGS</div>
+                                <div class="insight-node-wall" id="riskChips">
+                                    <span class="node-empty">---</span>
+                                </div>
+                            </div>
+
+                            <div class="insight-group">
+                                <div class="insight-label"><span class="i-icon">💊</span> MEDS</div>
+                                <div class="insight-node-wall" id="medChips">
+                                    <span class="node-empty">---</span>
+                                </div>
+                            </div>
+
+                            <div class="engine-footer">
+                                <div class="engine-orb" id="insightOrb"></div>
+                                <div class="engine-status">
+                                    <span class="status-label">Processor State</span>
+                                    <span class="status-val" id="insightStatusText">IDLE</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="console-disclaimer">⚕️ Clinical Decision Support Only · Professional Judgment Required
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- ====== ENROLLMENT CTA ====== -->
+        <section id="enroll">
+            <div class="container">
+                <div class="enroll-card glass reveal">
+                    <div class="enroll-glow"></div>
+                    <p class="section-eyebrow" style="color:var(--secondary);">Limited Seats · 2026 Cohort</p>
+                    <h2>Ready to Lead the <span class="gradient-text">AI Revolution</span> in Healthcare?</h2>
+                    <p class="enroll-sub">Join 500+ biopharma professionals already transforming their practice with
+                        Agentic AI. Next cohort begins March 2026.</p>
+                    <div class="enroll-features">
+                        <span>✅ 6 Interactive Modules</span>
+                        <span>✅ Live Mentorship Sessions</span>
+                        <span>✅ Industry Certification</span>
+                        <span>✅ Lifetime Access</span>
+                    </div>
+                    <a href="#" class="btn btn-primary btn-glow btn-lg">Enroll Now — Secure Your Seat</a>
+                    <p class="enroll-note">🔒 Secure checkout · Cancel anytime · Cohort starts March 15, 2026</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <span class="logo-icon">⬡</span>
+                <span class="logo-text">BioPharma<span class="logo-accent">AI</span></span>
+                <p>Empowering healthcare professionals with autonomous AI.</p>
+            </div>
+            <div class="footer-links">
+                <h5>Program</h5>
+                <a href="#modules">Modules</a>
+                <a href="#why">Why AI</a>
+                <a href="#enroll">Enroll</a>
+            </div>
+            <div class="footer-links">
+                <h5>Legal</h5>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">HIPAA Notice</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 BioPharma AI Initiative. All rights reserved. Built with Agentic AI.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
