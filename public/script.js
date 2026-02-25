@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMolecular();
     updateDiagnostics();
     initClinicTimer();
+    initPhysicianName();
 });
 
 // ====== NAV ======
@@ -483,9 +484,11 @@ function copyResponse(btn) {
 }
 
 function exportConsultation() {
-    let output = `CLINICAL CONSULTATION SUMMARY\n`;
-    output += `Date: ${new Date().toLocaleString()}\n`;
-    output += `Duration: ${document.getElementById('clinicTimer').textContent}\n`;
+    const docName = localStorage.getItem('biopharma_physician_name') || 'Dr. Not Set';
+    let output = `CLINICAL CONSULTATION REPORT\n`;
+    output += `PHYSICIAN: ${docName.toUpperCase()}\n`;
+    output += `DATE: ${new Date().toLocaleString()}\n`;
+    output += `DURATION: ${document.getElementById('clinicTimer').textContent}\n`;
     output += `-------------------------------------------\n\n`;
 
     aiHistory.forEach(msg => {
@@ -506,27 +509,41 @@ function exportConsultation() {
 const OPENROUTER_URL = '/api/chat';
 // Note: DEFAULT_KEY is now handled securely on the server via .env.local
 
-// API Modal Helpers
+// Profile Modal Helpers
 window.openApiSettings = function () {
     document.getElementById('apiModal').classList.add('active');
-    document.getElementById('userApiKey').value = localStorage.getItem('biopharma_api_key') || '';
+    document.getElementById('physicianName').value = localStorage.getItem('biopharma_physician_name') || '';
 };
 
 window.closeApiSettings = function () {
     document.getElementById('apiModal').classList.remove('active');
 };
 
-window.saveApiKey = function () {
-    const key = document.getElementById('userApiKey').value.trim();
-    if (key) {
-        localStorage.setItem('biopharma_api_key', key);
-        alert('API Configuration Saved successfully.');
+window.savePhysicianName = function () {
+    const name = document.getElementById('physicianName').value.trim();
+    if (name) {
+        localStorage.setItem('biopharma_physician_name', name);
+        document.getElementById('physicianDisplay').textContent = `Physician: ${name}`;
+        document.getElementById('physicianBtn').innerHTML = `👨‍⚕️ ${name}`;
+        alert('Physician Profile updated successfully.');
     } else {
-        localStorage.removeItem('biopharma_api_key');
-        alert('Configuration reset to default system key.');
+        localStorage.removeItem('biopharma_physician_name');
+        document.getElementById('physicianDisplay').textContent = `Physician: Dr. Not Set`;
+        document.getElementById('physicianBtn').innerHTML = `👨‍⚕️ Dr. Not Set`;
+        alert('Profile reset to default.');
     }
     closeApiSettings();
 };
+
+function initPhysicianName() {
+    const name = localStorage.getItem('biopharma_physician_name');
+    if (name) {
+        const d_el = document.getElementById('physicianDisplay');
+        const b_el = document.getElementById('physicianBtn');
+        if (d_el) d_el.textContent = `Physician: ${name}`;
+        if (b_el) b_el.innerHTML = `👨‍⚕️ ${name}`;
+    }
+}
 
 // Specialized Clinical System Prompt
 const aiHistory = [

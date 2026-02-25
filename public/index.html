@@ -414,7 +414,7 @@
                             <span class="header-label">Consultation Session</span>
                             <div class="header-item">
                                 <div class="ai-status-dot pulse-online" id="aiStatusDot" title="AI Core Online"></div>
-                                <span class="session-id">ID: CONSULT-2026-X83P</span>
+                                <span class="session-id" id="physicianDisplay">Physician: Dr. Not Set</span>
                                 <span class="clinic-timer" id="clinicTimer">00:00</span>
                             </div>
                         </div>
@@ -431,8 +431,9 @@
 
                         <div class="header-group dashboard-controls">
                             <div class="control-actions">
-                                <button class="dash-btn" onclick="openApiSettings()" title="API Settings">⚙️
-                                    Settings</button>
+                                <button class="dash-btn" onclick="openApiSettings()" title="Physician Profile"
+                                    id="physicianBtn">👨‍⚕️
+                                    Dr. Not Set</button>
                                 <button class="dash-btn" onclick="exportConsultation()" title="Save Session">💾
                                     Export</button>
                                 <div class="dash-model-select">
@@ -632,27 +633,24 @@
         </div>
     </footer>
 
-    <!-- ====== API SETTINGS MODAL ====== -->
+    <!-- ====== SETTINGS MODAL ====== -->
     <div id="apiModal" class="modal-overlay">
         <div class="modal-content glass">
             <div class="modal-header">
-                <h3>⚙️ API Configuration</h3>
+                <h3>👨‍⚕️ Physician Profile</h3>
                 <button class="modal-close" onclick="closeApiSettings()">&times;</button>
             </div>
-            <p class="modal-sub">To use the Clinical AI, please provide your <strong>OpenRouter API Key</strong>. Your
-                key is stored safely in your browser and is never sent to our servers.</p>
+            <p class="modal-sub">Personalize your clinical dashboard. This name will appear on all exported
+                prescriptions and consultation summaries.</p>
             <div class="modal-body">
                 <div class="input-group">
-                    <label>OpenRouter API Key</label>
-                    <input type="password" id="userApiKey" placeholder="sk-or-v1-..." />
+                    <label>Physician Name & Credentials</label>
+                    <input type="text" id="physicianName" placeholder="e.g. Dr. Jatin Patel, MD" />
                 </div>
-                <div class="input-group-row">
-                    <a href="https://openrouter.ai/keys" target="_blank" class="key-link">Get your key here ↗</a>
+                <div class="modal-actions">
+                    <button class="btn btn-outline" onclick="closeApiSettings()">Cancel</button>
+                    <button class="btn btn-primary" onclick="savePhysicianName()">Save Profile</button>
                 </div>
-            </div>
-            <div class="modal-actions">
-                <button class="btn btn-outline" onclick="closeApiSettings()">Cancel</button>
-                <button class="btn btn-primary" onclick="saveApiKey()">Save Configuration</button>
             </div>
         </div>
     </div>
