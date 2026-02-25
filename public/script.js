@@ -502,10 +502,9 @@ function exportConsultation() {
     a.click();
 }
 
-// ====== CLINICAL DECISION AI — OpenRouter ======
-const DEFAULT_KEY = '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';
-let OPENROUTER_API_KEY = localStorage.getItem('biopharma_api_key') || DEFAULT_KEY;
-const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions';
+// ====== CLINICAL DECISION AI — Proxy Route ======
+const OPENROUTER_URL = '/api/chat';
+// Note: DEFAULT_KEY is now handled securely on the server via .env.local
 
 // API Modal Helpers
 window.openApiSettings = function () {
@@ -915,14 +914,22 @@ async function sendAiMessageWithText(userText) {
     messagesEl.scrollTop = messagesEl.scrollHeight;
 
     try {
-        const response = await fetch(OPENROUTER_URL, {
+        const userKey = localStorage.getItem('biopharma_api_key');
+        const fetchUrl = userKey ? 'https://openrouter.ai/api/v1/chat/completions' : OPENROUTER_URL;
+
+        const headers = {
+            'Content-Type': 'application/json'
+        };
+
+        if (userKey) {
+            headers['Authorization'] = `Bearer ${userKey}`;
+            headers['HTTP-Referer'] = 'https://biopharma-agent-demo.ai';
+            headers['X-Title'] = 'BioPharma AI Program';
+        }
+
+        const response = await fetch(fetchUrl, {
             method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
-                'Content-Type': 'application/json',
-                'HTTP-Referer': 'https://biopharma-agent-demo.ai',
-                'X-Title': 'BioPharma AI Program'
-            },
+            headers: headers,
             body: JSON.stringify({
                 model: modelSelect.value,
                 messages: aiHistory,
