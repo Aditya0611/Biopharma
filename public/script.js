@@ -520,11 +520,9 @@ window.saveApiKey = function () {
     const key = document.getElementById('userApiKey').value.trim();
     if (key) {
         localStorage.setItem('biopharma_api_key', key);
-        OPENROUTER_API_KEY = key;
         alert('API Configuration Saved successfully.');
     } else {
         localStorage.removeItem('biopharma_api_key');
-        OPENROUTER_API_KEY = DEFAULT_KEY;
         alert('Configuration reset to default system key.');
     }
     closeApiSettings();

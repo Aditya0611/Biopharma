@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
                 'X-Title': 'BioPharma AI Program',
             },
             body: JSON.stringify({
-                model: model || 'google/gemini-2.0-flash:free',
+                model: model || 'openrouter/auto',
                 messages,
                 stream: true,
             }),
