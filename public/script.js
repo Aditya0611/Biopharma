@@ -503,8 +503,33 @@ function exportConsultation() {
 }
 
 // ====== CLINICAL DECISION AI — OpenRouter ======
-const OPENROUTER_API_KEY = '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';
+const DEFAULT_KEY = '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';
+let OPENROUTER_API_KEY = localStorage.getItem('biopharma_api_key') || DEFAULT_KEY;
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions';
+
+// API Modal Helpers
+window.openApiSettings = function () {
+    document.getElementById('apiModal').classList.add('active');
+    document.getElementById('userApiKey').value = localStorage.getItem('biopharma_api_key') || '';
+};
+
+window.closeApiSettings = function () {
+    document.getElementById('apiModal').classList.remove('active');
+};
+
+window.saveApiKey = function () {
+    const key = document.getElementById('userApiKey').value.trim();
+    if (key) {
+        localStorage.setItem('biopharma_api_key', key);
+        OPENROUTER_API_KEY = key;
+        alert('API Configuration Saved successfully.');
+    } else {
+        localStorage.removeItem('biopharma_api_key');
+        OPENROUTER_API_KEY = DEFAULT_KEY;
+        alert('Configuration reset to default system key.');
+    }
+    closeApiSettings();
+};
 
 // Specialized Clinical System Prompt
 const aiHistory = [
@@ -907,6 +932,12 @@ async function sendAiMessageWithText(userText) {
         });
 
         if (!response.ok) {
+            if (response.status === 401) {
+                throw new Error(`Unauthorized (401): The API Key is invalid or expired. Please check your "Settings" and ensure your key is correct.`);
+            }
+            if (response.status === 402) {
+                throw new Error(`Payment Required (402): Your OpenRouter account has insufficient credits. Please top up your balance.`);
+            }
             throw new Error(`API error: ${response.status} ${response.statusText}`);
         }
 
