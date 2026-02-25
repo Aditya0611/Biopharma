@@ -503,7 +503,7 @@ function exportConsultation() {
 }
 
 // ====== CLINICAL DECISION AI — OpenRouter ======
-const DEFAULT_KEY = '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';
+const DEFAULT_KEY = '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';
 let OPENROUTER_API_KEY = localStorage.getItem('biopharma_api_key') || DEFAULT_KEY;
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions';
 
